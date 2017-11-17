@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  # 帳號管理
+  devise_for :users
+  
   # 首頁
   root to: 'pages#index'
   resources :pages, only: [] do
