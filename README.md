@@ -71,6 +71,8 @@ $ rails db:setup
 
 ```bash
 $ bundle exec rspec
+# 加上 -f d 參數顯示 desc
+bundle exec rspec -f d
 ```
 
 只測 model
