@@ -9,6 +9,7 @@ end
 gem 'devise'
 # 測試
 gem 'rspec-rails', '~> 3.6'
+gem 'rails-controller-testing'
 # 環境變數
 gem 'figaro'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
