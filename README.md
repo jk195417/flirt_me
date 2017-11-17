@@ -23,13 +23,13 @@ Flirt Me 撩我 聊天機器人
 
 至 `config/database.yml` 設定
 
-username
+- username
 
 ### 環境變數
 
 至 `config/application.yml` 設定
 
-* production secret key base
+- production secret key base
 
 ```bash
 $ rails secret
@@ -42,7 +42,7 @@ production:
   secret_key_base: 'here'
 ```
 
-* Line
+- Line
 
 填入 Line bot 的
 
@@ -50,8 +50,7 @@ production:
 - line_channel_secret
 - line_channel_token
 
-資訊可以從 https://developers.line.me/console/channel/{channel-id}/basic/
-得知
+資訊可以從 <https://developers.line.me/console/channel/{channel-id}/basic/> 得知
 
 ```yml
 line_channel_id: ''
@@ -67,7 +66,9 @@ $ rails db:setup
 ```
 
 ## 測試
+
 待補充
 
 ## rake 任務
+
 待補充
