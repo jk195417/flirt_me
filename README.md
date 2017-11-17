@@ -1,24 +1,73 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Flirt Me 撩我 聊天機器人
 
-Things you may want to cover:
+## 技術棧：
 
-* Ruby version
+- ruby 2.4.1
+- rails 5.1.4
+- postgres 9.6.5
+- line messaging api v2
 
-* System dependencies
+## 設定：
 
-* Configuration
+### 系統
 
-* Database creation
+需要安裝以下相依的軟體
 
-* Database initialization
+- ruby 2.4.1
+- rails 5.1.4
+- postgres 9.6.5
 
-* How to run the test suite
+### 資料庫
 
-* Services (job queues, cache servers, search engines, etc.)
+至 `config/database.yml` 設定
 
-* Deployment instructions
+username
 
-* ...
+### 環境變數
+
+至 `config/application.yml` 設定
+
+* production secret key base
+
+```bash
+$ rails secret
+```
+
+執行指令後的結果貼至
+
+```yml
+production:
+  secret_key_base: 'here'
+```
+
+* Line
+
+填入 Line bot 的
+
+- line_channel_id
+- line_channel_secret
+- line_channel_token
+
+資訊可以從 https://developers.line.me/console/channel/{channel-id}/basic/
+得知
+
+```yml
+line_channel_id: ''
+line_channel_secret: ''
+line_channel_token: ''
+```
+
+## 建立資料庫
+
+```bash
+$ rails db:migrate
+$ rails db:setup
+```
+
+## 測試
+待補充
+
+## rake 任務
+待補充
