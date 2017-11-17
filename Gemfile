@@ -4,6 +4,8 @@ git_source(:github) do |repo_name|
   repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?('/')
   "https://github.com/#{repo_name}.git"
 end
+# 測試
+gem 'rspec-rails', '~> 3.6'
 # 環境變數
 gem 'figaro'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'

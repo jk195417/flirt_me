@@ -67,7 +67,29 @@ $ rails db:setup
 
 ## 測試
 
-待補充
+跑所有測試
+
+```bash
+$ bundle exec rspec
+```
+
+只測 model
+
+```bash
+$ bundle exec rspec/models
+```
+
+只測 some_controller_spec.rb
+
+```bash
+$ bundle exec rspec/controllers/some_controller_spec.rb
+```
+
+只測 some_controller_spec.rb 的第 8 行
+
+```bash
+$ bundle exec rspec/controllers/some_controller_spec.rb:8
+```
 
 ## rake 任務
 
