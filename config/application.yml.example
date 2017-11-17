@@ -1,0 +1,6 @@
+production:
+  secret_key_base: ''
+  db_url: ''
+  db_password: ''
+  line_channel_id: ''
+  line_channel_secret: ''
