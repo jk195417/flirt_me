@@ -13,5 +13,6 @@
 //= require rails-ujs
 //= require turbolinks
 //= require jquery/jquery
-//= require popper.js/dist/popper
+// require popper.js/dist/popper will get error : https://github.com/FezVrasta/popper.js/issues/429
+//= require popper.js/dist/umd/popper
 //= require bootstrap/dist/js/bootstrap

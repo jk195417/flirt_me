@@ -55,7 +55,7 @@ $ yarn add popper.js@^1.12.3
 
 ```javascript
 //= require jquery/jquery
-//= require popper.js/dist/popper
+//= require popper.js/dist/umd/popper
 //= require bootstrap/dist/js/bootstrap
 ```
 
