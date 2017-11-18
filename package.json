@@ -1,5 +1,14 @@
 {
   "name": "flirt_me",
   "private": true,
-  "dependencies": {}
+  "dependencies": {
+    "bootstrap": "4.0.0-beta.2",
+    "jquery": "^1.9.1",
+    "popper.js": "^1.12.3"
+  },
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/jk195417/flirt_me.git",
+  "author": "楊竑昕 <jk195417@gmail.com>",
+  "license": "MIT"
 }
