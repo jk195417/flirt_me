@@ -8,6 +8,7 @@ Flirt Me 撩我 聊天機器人
 - rails 5.1.4
 - postgres 9.6.5
 - line messaging api v2
+- bootstrap 4 beta 2
 
 ## 設定：
 
@@ -18,12 +19,60 @@ Flirt Me 撩我 聊天機器人
 - ruby 2.4.1
 - rails 5.1.4
 - postgres 9.6.5
+- yarn
 
 ### 資料庫
 
 至 `config/database.yml` 設定
 
 - username
+
+### 套件 Gem
+
+#### figaro
+
+```bash
+$ bundle exec figaro install
+```
+
+來 `config/application.yml` 設定環境變數
+
+#### rspec-rails
+
+```ruby
+group :development, :test do
+  gem 'rspec-rails', '~> 3.6'
+  gem 'rails-controller-testing'
+end
+```
+
+```bash
+$ bundle
+$ rails generate rspec:install
+```
+
+執行測試案例用
+
+```bash
+$ bundle exec rspec
+```
+
+#### devise
+
+```bash
+$ rails generate devise:install
+```
+
+`config/environments/development.rb`
+
+```ruby
+config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+```
+
+```bash
+$ rails generate devise User
+$ rails db:migrate
+```
 
 ### 環境變數
 
