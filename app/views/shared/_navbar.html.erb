@@ -1,3 +1,17 @@
-<nav class="navbar navbar-light bg-light">
-  <%= link_to 'Flirt Me 撩我', root_path, class: 'navbar-brand' %>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <%= link_to root_path, class: 'navbar-brand' do %>
+    <%= image_tag('lips.png') %>
+    撩我
+  <% end%>
+  <span class="navbar-text">Flirt Me <3</span>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto"></ul>
+    <ul class="navbar-nav ml-auto">
+      <%= nav_li '註冊', new_user_registration_path %>
+      <%= nav_li '登入', new_user_session_path %>
+    </ul>
+  </div>
 </nav>
