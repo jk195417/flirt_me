@@ -5,7 +5,8 @@
   </head>
   <body>
     <%= render 'shared/navbar' %>
-    <main class="container-fluid">
+    <%= flash_message %>
+    <main class="container-fluid pt-2">
       <%= yield %>
     </main>
     <%= render 'shared/footer' %>
