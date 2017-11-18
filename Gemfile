@@ -7,9 +7,6 @@ end
 
 # 會員功能
 gem 'devise'
-# 測試
-gem 'rspec-rails', '~> 3.6'
-gem 'rails-controller-testing'
 # 環境變數
 gem 'figaro'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
@@ -40,6 +37,9 @@ gem 'jbuilder', '~> 2.5'
 # gem 'capistrano-rails', group: :development
 
 group :development, :test do
+  # 測試
+  gem 'rspec-rails', '~> 3.6'
+  gem 'rails-controller-testing'
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   # Adds support for Capybara system testing and selenium driver
