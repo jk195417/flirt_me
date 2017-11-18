@@ -27,6 +27,16 @@ Flirt Me 撩我 聊天機器人
 
 - username
 
+### 語言與時區
+
+`config/application.rb` 加入
+
+```ruby
+config.encoding = 'utf-8'
+config.time_zone = 'Taipei'
+config.i18n.default_locale = 'zh-TW'
+```
+
 ### 套件
 
 #### figaro
@@ -55,7 +65,7 @@ $ yarn add popper.js@^1.12.3
 
 ```javascript
 //= require jquery/jquery
-//= require popper.js/dist/popper
+//= require popper.js/dist/umd/popper
 //= require bootstrap/dist/js/bootstrap
 ```
 
@@ -107,6 +117,7 @@ $ bundle exec rspec
 
 ```ruby
 gem 'devise'
+gem 'devise-i18n'
 ```
 
 ```bash
@@ -122,6 +133,19 @@ config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
 ```bash
 $ rails generate devise User
 $ rails db:migrate
+```
+
+產生 `app/views/devise/`
+
+```bash
+$ rails generate devise:i18n:views
+```
+
+對應的中文翻譯
+
+```bash
+$ rails generate devise:i18n:views
+$ rails generate devise:i18n:locale zh-TW
 ```
 
 ### 環境變數
