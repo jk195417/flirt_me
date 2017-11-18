@@ -7,6 +7,7 @@ end
 
 # 會員功能
 gem 'devise'
+gem 'devise-i18n'
 # 表單
 gem 'simple_form'
 # 環境變數
