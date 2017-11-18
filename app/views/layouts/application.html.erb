@@ -1,15 +1,13 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Flirt Me 撩我</title>
-    <%= csrf_meta_tags %>
-
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= render 'shared/header' %>
   </head>
-
   <body>
     <%= render 'shared/navbar' %>
-    <%= yield %>
+    <main class="container-fluid">
+      <%= yield %>
+    </main>
+    <%= render 'shared/footer' %>
   </body>
 </html>
