@@ -7,6 +7,8 @@ end
 
 # 會員功能
 gem 'devise'
+# 表單
+gem 'simple_form'
 # 環境變數
 gem 'figaro'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'

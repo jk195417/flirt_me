@@ -27,9 +27,15 @@ Flirt Me 撩我 聊天機器人
 
 - username
 
-### 套件 Gem
+### 套件
 
 #### figaro
+
+`Gemfile`
+
+```ruby
+gem 'figaro'
+```
 
 ```bash
 $ bundle exec figaro install
@@ -37,7 +43,45 @@ $ bundle exec figaro install
 
 來 `config/application.yml` 設定環境變數
 
+#### bootstrap 4
+
+```bash
+$ yarn add bootstrap@4.0.0-beta.2
+$ yarn add jquery@1.9.1
+$ yarn add popper.js@^1.12.3
+```
+
+`assets/javascripts/application.js` 加上
+
+```javascript
+//= require jquery/jquery
+//= require popper.js/dist/popper
+//= require bootstrap/dist/js/bootstrap
+```
+
+`assets/javascripts/application.css` 改名為 `assets/javascripts/application.scss`
+
+`assets/javascripts/application.scss` 加上
+
+```scss
+@import 'bootstrap/scss/bootstrap';
+```
+
+#### simple_form
+
+`Gemfile`
+
+```ruby
+gem 'simple_form'
+```
+
+```bash
+$ rails generate simple_form:install --bootstrap
+```
+
 #### rspec-rails
+
+`Gemfile`
 
 ```ruby
 group :development, :test do
@@ -58,6 +102,12 @@ $ bundle exec rspec
 ```
 
 #### devise
+
+`Gemfile`
+
+```ruby
+gem 'devise'
+```
 
 ```bash
 $ rails generate devise:install
