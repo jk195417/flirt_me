@@ -7,6 +7,8 @@ end
 
 # 常用翻譯
 gem 'rails-i18n', '~> 5.0.0'
+# 權限控制
+gem 'cancancan', '~> 2.0'
 # 角色系統
 gem "rolify"
 # 會員功能
