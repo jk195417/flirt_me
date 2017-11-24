@@ -4,8 +4,11 @@ git_source(:github) do |repo_name|
   repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?('/')
   "https://github.com/#{repo_name}.git"
 end
+
 # 常用翻譯
 gem 'rails-i18n', '~> 5.0.0'
+# 角色系統
+gem "rolify"
 # 會員功能
 gem 'devise'
 gem 'devise-i18n'
