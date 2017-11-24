@@ -111,6 +111,26 @@ $ rails generate rspec:install
 $ bundle exec rspec
 ```
 
+#### rails-erd
+
+電腦需要有安裝 GraphViz，Mac 上透過 brew 安裝
+
+```bash
+$ brew install graphviz
+```
+
+`Gemfile`
+
+```ruby
+gem 'rails-erd', require: false, group: :development
+```
+
+輸出 `erd.pdf` 檔案
+
+```bash
+$ bundle exec erd
+```
+
 #### devise
 
 `Gemfile`
