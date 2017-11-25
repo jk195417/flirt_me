@@ -41,13 +41,14 @@ config.i18n.default_locale = 'zh-TW'
 
 #### figaro
 
-`Gemfile`
+`Gemfile` 加入
 
 ```ruby
 gem 'figaro'
 ```
 
 ```bash
+$ bundle install
 $ bundle exec figaro install
 ```
 
@@ -79,61 +80,20 @@ $ yarn add popper.js@^1.12.3
 
 #### simple_form
 
-`Gemfile`
+`Gemfile` 加入
 
 ```ruby
 gem 'simple_form'
 ```
 
 ```bash
+$ bundle install
 $ rails generate simple_form:install --bootstrap
-```
-
-#### rspec-rails
-
-`Gemfile`
-
-```ruby
-group :development, :test do
-  gem 'rspec-rails', '~> 3.6'
-  gem 'rails-controller-testing'
-end
-```
-
-```bash
-$ bundle
-$ rails generate rspec:install
-```
-
-執行測試案例用
-
-```bash
-$ bundle exec rspec
-```
-
-#### rails-erd
-
-電腦需要有安裝 GraphViz，Mac 上透過 brew 安裝
-
-```bash
-$ brew install graphviz
-```
-
-`Gemfile`
-
-```ruby
-gem 'rails-erd', require: false, group: :development
-```
-
-輸出 `erd.pdf` 檔案
-
-```bash
-$ bundle exec erd
 ```
 
 #### devise
 
-`Gemfile`
+`Gemfile` 加入
 
 ```ruby
 gem 'devise'
@@ -141,6 +101,7 @@ gem 'devise-i18n'
 ```
 
 ```bash
+$ bundle install
 $ rails generate devise:install
 ```
 
@@ -168,6 +129,99 @@ $ rails generate devise:i18n:views
 $ rails generate devise:i18n:locale zh-TW
 ```
 
+#### rolify
+
+`Gemfile` 加入
+
+```ruby
+gem 'rolify'
+```
+
+```bash
+$ bundle install
+$ rails g rolify Role User
+```
+
+migration檔案補上版本號 5.1
+
+```ruby
+# 原本
+class RolifyCreateRoles < ActiveRecord::Migration
+# 改成
+class RolifyCreateRoles < ActiveRecord::Migration[5.1]
+```
+
+```bash
+$ rake db:migrate
+```
+
+#### cancancan
+
+`Gemfile` 加入
+
+```ruby
+gem 'cancancan', '~> 2.0'
+```
+
+安裝
+
+```bash
+$ bundle install
+$ rails g cancan:ability
+```
+
+用 `devise`+`rolify`+`cancancan` 做會員分權
+
+權限定義於 `app/models/ability.rb`
+
+#### rspec-rails
+
+`Gemfile` 加入
+
+```ruby
+group :development, :test do
+  gem 'rspec-rails', '~> 3.6'
+  gem 'rails-controller-testing'
+end
+```
+
+```bash
+$ bundle install
+$ rails generate rspec:install
+```
+
+執行測試案例用
+
+```bash
+$ bundle exec rspec
+```
+
+#### rails-erd
+
+電腦需要有安裝 GraphViz，Mac 上透過 brew 安裝
+
+```bash
+$ brew install graphviz
+```
+
+`Gemfile` 加入
+
+```ruby
+gem 'rails-erd', require: false, group: :development
+```
+
+安裝
+
+```bash
+$ bundle install
+```
+
+輸出 `erd.pdf` 檔案
+
+```bash
+$ bundle exec erd
+```
+
 ### 環境變數
 
 至 `config/application.yml` 設定
@@ -176,6 +230,7 @@ $ rails generate devise:i18n:locale zh-TW
 
 ```bash
 $ rails secret
+`
 ```
 
 執行指令後的結果貼至
