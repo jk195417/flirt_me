@@ -10,7 +10,7 @@ gem 'rails-i18n', '~> 5.0.0'
 # 權限控制
 gem 'cancancan', '~> 2.0'
 # 角色系統
-gem "rolify"
+gem 'rolify'
 # 會員功能
 gem 'devise'
 gem 'devise-i18n'
