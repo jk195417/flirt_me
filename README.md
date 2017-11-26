@@ -174,28 +174,6 @@ $ rails g cancan:ability
 
 權限定義於 `app/models/ability.rb`
 
-#### rspec-rails
-
-`Gemfile` 加入
-
-```ruby
-group :development, :test do
-  gem 'rspec-rails', '~> 3.6'
-  gem 'rails-controller-testing'
-end
-```
-
-```bash
-$ bundle install
-$ rails generate rspec:install
-```
-
-執行測試案例用
-
-```bash
-$ bundle exec rspec
-```
-
 #### rails-erd
 
 電腦需要有安裝 GraphViz，Mac 上透過 brew 安裝
@@ -221,6 +199,112 @@ $ bundle install
 ```bash
 $ bundle exec erd
 ```
+
+### 測試套件
+
+- rspec-rails
+- rails-controller-testing
+- factory_bot_rails
+- database_cleaner
+
+`Gemfile` 加入
+
+```ruby
+group :test do
+  gem 'rspec-rails', '~> 3.6'
+  gem 'factory_bot_rails', '~> 4.0'
+  gem 'rails-controller-testing'
+  gem 'database_cleaner'
+end
+```
+
+安裝
+
+```bash
+$ bundle install
+```
+
+設定 rspec
+
+```bash
+$ rails generate rspec:install
+```
+
+設定 factory_bot_rails，新增 `spec/support/factory_bot.rb`
+
+```ruby
+RSpec.configure do |config|
+  config.include FactoryBot::Syntax::Methods
+end
+```
+
+注意 `spec/rails_helper.rb` 需要 require `spec/support/` 資料夾下的檔案。`spec/support/` 內別放 `_spec.rb` 結尾的測試檔，只放設定檔。不然會被 require 兩次。
+
+```ruby
+Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
+```
+
+設定 database_cleaner，刪除 `spec/rails_helper.rb` 中下列設定
+
+```ruby
+# Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
+config.fixture_path = "#{::Rails.root}/spec/fixtures"
+
+# If you're not using ActiveRecord, or you'd prefer not to run each of your
+# examples within a transaction, remove the following line or assign false
+# instead of true.
+config.use_transactional_fixtures = true
+```
+
+新增 `spec/support/database_cleaner.rb` 加入下面的設定
+
+```ruby
+RSpec.configure do |config|
+
+  config.before(:suite) do
+    DatabaseCleaner.strategy = :transaction
+    DatabaseCleaner.clean_with(:truncation)
+  end
+
+  config.around(:each) do |example|
+    DatabaseCleaner.cleaning do
+      example.run
+    end
+  end
+end
+```
+
+加入會員功能的測試
+
+在 `spec/rails_helper.rb` 的 `require 'rspec/rails'` 後加入下面這行
+
+```ruby
+require 'devise'
+```
+
+新增 `spec/support/devise.rb` 加入下面設定
+
+```ruby
+RSpec.configure do |config|
+  config.include Devise::Test::ControllerHelpers, :type => :controller
+end
+```
+
+執行測試案例用
+
+```bash
+$ bundle exec rspec
+```
+
+參考
+
+<https://github.com/plataformatec/devise/wiki/How-To:-Test-controllers-with-Rails-3-and-4-%28and-RSpec%29>
+
+ <https://github.com/DatabaseCleaner/database_cleaner#rspec-example>
+
+<https://github.com/thoughtbot/factory_bot/blob/master/GETTING_STARTED.md>
+
+<https://github.com/eliotsykes/rspec-rails-examples/blob/master/spec/support/database_cleaner.rb>
 
 ### 環境變數
 
