@@ -238,7 +238,11 @@ RSpec.configure do |config|
 end
 ```
 
-注意 `spec/rails_helper.rb` 需要 require `spec/support/` 資料夾下的檔案。
+注意 `spec/rails_helper.rb` 需要 require `spec/support/` 資料夾下的檔案。`spec/support/` 內別放 `_spec.rb` 結尾的測試檔，只放設定檔。不然會被 require 兩次。
+
+```ruby
+Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
+```
 
 設定 database_cleaner，刪除 `spec/rails_helper.rb` 中下列設定
 
@@ -270,13 +274,37 @@ RSpec.configure do |config|
 end
 ```
 
+加入會員功能的測試
+
+在 `spec/rails_helper.rb` 的 `require 'rspec/rails'` 後加入下面這行
+
+```ruby
+require 'devise'
+```
+
+新增 `spec/support/devise.rb` 加入下面設定
+
+```ruby
+RSpec.configure do |config|
+  config.include Devise::Test::ControllerHelpers, :type => :controller
+end
+```
+
 執行測試案例用
 
 ```bash
 $ bundle exec rspec
 ```
 
+參考
+
+<https://github.com/plataformatec/devise/wiki/How-To:-Test-controllers-with-Rails-3-and-4-%28and-RSpec%29>
+
+ <https://github.com/DatabaseCleaner/database_cleaner#rspec-example>
+
 <https://github.com/thoughtbot/factory_bot/blob/master/GETTING_STARTED.md>
+
+<https://github.com/eliotsykes/rspec-rails-examples/blob/master/spec/support/database_cleaner.rb>
 
 ### 環境變數
 
