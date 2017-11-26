@@ -174,28 +174,6 @@ $ rails g cancan:ability
 
 權限定義於 `app/models/ability.rb`
 
-#### rspec-rails
-
-`Gemfile` 加入
-
-```ruby
-group :development, :test do
-  gem 'rspec-rails', '~> 3.6'
-  gem 'rails-controller-testing'
-end
-```
-
-```bash
-$ bundle install
-$ rails generate rspec:install
-```
-
-執行測試案例用
-
-```bash
-$ bundle exec rspec
-```
-
 #### rails-erd
 
 電腦需要有安裝 GraphViz，Mac 上透過 brew 安裝
@@ -221,6 +199,84 @@ $ bundle install
 ```bash
 $ bundle exec erd
 ```
+
+### 測試套件
+
+- rspec-rails
+- rails-controller-testing
+- factory_bot_rails
+- database_cleaner
+
+`Gemfile` 加入
+
+```ruby
+group :test do
+  gem 'rspec-rails', '~> 3.6'
+  gem 'factory_bot_rails', '~> 4.0'
+  gem 'rails-controller-testing'
+  gem 'database_cleaner'
+end
+```
+
+安裝
+
+```bash
+$ bundle install
+```
+
+設定 rspec
+
+```bash
+$ rails generate rspec:install
+```
+
+設定 factory_bot_rails，新增 `spec/support/factory_bot.rb`
+
+```ruby
+RSpec.configure do |config|
+  config.include FactoryBot::Syntax::Methods
+end
+```
+
+注意 `spec/rails_helper.rb` 需要 require `spec/support/` 資料夾下的檔案。
+
+設定 database_cleaner，刪除 `spec/rails_helper.rb` 中下列設定
+
+```ruby
+# Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
+config.fixture_path = "#{::Rails.root}/spec/fixtures"
+
+# If you're not using ActiveRecord, or you'd prefer not to run each of your
+# examples within a transaction, remove the following line or assign false
+# instead of true.
+config.use_transactional_fixtures = true
+```
+
+新增 `spec/support/database_cleaner.rb` 加入下面的設定
+
+```ruby
+RSpec.configure do |config|
+
+  config.before(:suite) do
+    DatabaseCleaner.strategy = :transaction
+    DatabaseCleaner.clean_with(:truncation)
+  end
+
+  config.around(:each) do |example|
+    DatabaseCleaner.cleaning do
+      example.run
+    end
+  end
+end
+```
+
+執行測試案例用
+
+```bash
+$ bundle exec rspec
+```
+
+<https://github.com/thoughtbot/factory_bot/blob/master/GETTING_STARTED.md>
 
 ### 環境變數
 
