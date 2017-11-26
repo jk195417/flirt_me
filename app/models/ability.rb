@@ -4,11 +4,10 @@ class Ability
   def initialize(user)
     # set guest
     user ||= User.new
+    cannot :manage, :all
+    # load roles
     user.roles
-
     # admin
-    if user.has_cached_role?(:admin)
-
-    end
+    can :manage, :backstage if user.has_cached_role?(:admin)
   end
 end
