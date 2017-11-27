@@ -210,10 +210,13 @@ $ bundle exec erd
 `Gemfile` 加入
 
 ```ruby
-group :test do
+group :development, :test do
   gem 'rspec-rails', '~> 3.6'
   gem 'factory_bot_rails', '~> 4.0'
   gem 'rails-controller-testing'
+end
+
+group :test do
   gem 'database_cleaner'
 end
 ```
