@@ -6,9 +6,23 @@ bootstrap@4.0.0-beta.2:
   version "4.0.0-beta.2"
   resolved "https://registry.yarnpkg.com/bootstrap/-/bootstrap-4.0.0-beta.2.tgz#4d67d2aa2219f062cd90bc1247e6747b9e8fd051"
 
+classnames@^2.2.5:
+  version "2.2.5"
+  resolved "https://registry.yarnpkg.com/classnames/-/classnames-2.2.5.tgz#fb3801d453467649ef3603c7d61a02bd129bde6d"
+
+feather-icons@^4.0.1:
+  version "4.0.1"
+  resolved "https://registry.yarnpkg.com/feather-icons/-/feather-icons-4.0.1.tgz#98f06032c08d5d01d4bd7e6188c60578118fbd7d"
+  dependencies:
+    classnames "^2.2.5"
+
 jquery@^1.9.1:
   version "1.9.1"
   resolved "https://registry.yarnpkg.com/jquery/-/jquery-1.9.1.tgz#e4cd4835faaefbade535857613c0fc3ff2adaf34"
+
+js-cookie@^2.2.0:
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/js-cookie/-/js-cookie-2.2.0.tgz#1b2c279a6eece380a12168b92485265b35b1effb"
 
 popper.js@^1.12.3:
   version "1.12.9"
