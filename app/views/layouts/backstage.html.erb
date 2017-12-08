@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <%= render 'backstage/shared/header' %>
+  </head>
+  <body>
+    <%= render 'backstage/shared/sidebar'%>
+    <main class="pt-2 container-fluid">
+      <div class="my-2"><%= sidebar_toggler %></div>
+      <%= yield %>
+    </main>
+    <%= render 'shared/footer' %>
+  </body>
+</html>

@@ -1,0 +1,13 @@
+<nav id="sidebar" class="sidebar bg-light">
+  <div class="text-center p-2 h4">
+    <%= image_tag('lips.png') %>
+    <span>撩我 | 後台</span>
+  </div>
+
+  <ul class="nav nav-pills flex-column">
+    <%= nav_li '對話', backstage_dialogues_path %>
+  </ul>
+  <ul class="nav nav-pills flex-column">
+    <%= nav_li '回到前台', root_path %>
+  </ul>
+</nav>
