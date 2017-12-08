@@ -3,12 +3,13 @@
     <%= image_tag('lips.png') %>
     撩我
   <% end %>
-  <span class="navbar-text">Flirt Me</span>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto"></ul>
+    <ul class="navbar-nav mr-auto">
+      <%= nav_li '後台', backstage_root_path if can?(:manage, :backstage) %>
+    </ul>
     <ul class="navbar-nav ml-auto">
       <% if user_signed_in? %>
         <li class="nav-item dropdown">
