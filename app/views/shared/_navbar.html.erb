@@ -8,6 +8,7 @@
   </button>
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
+      <%= nav_li '撩妹金句', dialogues_path %>
       <%= nav_li '後台', backstage_root_path if can?(:manage, :backstage) %>
     </ul>
     <ul class="navbar-nav ml-auto">
