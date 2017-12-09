@@ -3,12 +3,21 @@
     <%= image_tag('lips.png') %>
     <span>撩我 | 後台</span>
   <% end %>
-  <div class="my-2 text-center">
+  <div class="text-center">
     <ul class="navbar-nav">
-      <%= nav_li '對話', backstage_dialogues_path %>
+      <%= nav_li '回到前台', root_path, klass: 'dropdown' %>
     </ul>
+    <hr>
     <ul class="navbar-nav">
-      <%= nav_li '回到前台', root_path %>
+      <div class="card bg-transparent border-warning my-2">
+        <div class="card-header text-secondary">
+          撩妹金句
+        </div>
+        <div class="list-group list-group-flush">
+          <%= sidebar_card_link '查看', backstage_dialogues_path, klass: 'btn btn-outline-warning', id: 'dialogues-show' %>
+          <%= sidebar_card_link '新增', new_backstage_dialogue_path, klass: 'btn btn-outline-warning', id: 'dialogues-new' %>
+        </div>
+      </div>
     </ul>
   </div>
 </nav>
