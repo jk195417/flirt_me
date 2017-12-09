@@ -7,6 +7,7 @@
     <%= render 'backstage/shared/sidebar'%>
     <main class="pt-2">
       <div class="container-fluid">
+        <%= flash_message %>
         <div class="mb-2"><%= sidebar_toggler %></div>
         <%= yield %>
       </div>
