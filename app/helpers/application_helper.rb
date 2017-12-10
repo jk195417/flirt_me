@@ -1,8 +1,8 @@
 module ApplicationHelper
-  def nav_li(text, path, klass: '', method: :get, inner_class: '', target: nil)
+  def nav_li(text, path, klass: '', method: :get)
     active = request.path == path ? 'active' : ''
     klass += ' nav-item'
-    content_tag :li, link_to(text, path, method: method, class: "nav-link #{active} #{inner_class}", target: target), class: klass
+    content_tag :li, link_to(text, path, method: method, class: "nav-link #{active}"), class: klass
   end
 
   def flash_message

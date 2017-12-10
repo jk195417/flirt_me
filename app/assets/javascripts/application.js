@@ -16,3 +16,5 @@
 // require popper.js/dist/popper will get error : https://github.com/FezVrasta/popper.js/issues/429
 //= require popper.js/dist/umd/popper
 //= require bootstrap/dist/js/bootstrap
+//= require js-cookie/src/js.cookie
+//= require backstage/sidebar

@@ -1,6 +1,4 @@
-class Backstage::PagesController < ApplicationController
-  authorize_resource class: :backstage
-
+class Backstage::PagesController < Backstage::BaseController
   def index
   end
 end

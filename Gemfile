@@ -4,7 +4,8 @@ git_source(:github) do |repo_name|
   repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?('/')
   "https://github.com/#{repo_name}.git"
 end
-
+# icons
+gem "font-awesome-rails"
 # 常用翻譯
 gem 'rails-i18n', '~> 5.0.0'
 # 權限控制
@@ -46,6 +47,10 @@ gem 'jbuilder', '~> 2.5'
 # gem 'capistrano-rails', group: :development
 
 group :development, :test do
+  # test
+  gem 'rspec-rails', '~> 3.6'
+  gem 'factory_bot_rails', '~> 4.0'
+  gem 'rails-controller-testing'
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   # Adds support for Capybara system testing and selenium driver
@@ -65,10 +70,7 @@ group :development do
 end
 
 group :test do
-  gem 'rspec-rails', '~> 3.6'
-  gem 'factory_bot_rails', '~> 4.0'
-  gem 'rails-controller-testing'
-  gem 'database_cleaner'
+  gem 'database_cleaner', '~> 1.6'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

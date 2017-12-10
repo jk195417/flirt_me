@@ -1,0 +1,23 @@
+<nav id="sidebar" class="navbar navbar-dark bg-dark">
+  <%= link_to backstage_root_path, class: "nav-link navbar-brand" do %>
+    <%= image_tag('lips.png') %> 撩我
+    <span><%= fa_icon('wrench', text: '後台') %></span>
+  <% end %>
+  <div class="text-center">
+    <ul class="navbar-nav">
+      <%= nav_li (fa_icon 'home', text: '回到前台'), root_path, klass: 'dropdown' %>
+    </ul>
+    <hr>
+    <ul class="navbar-nav">
+      <div class="card bg-transparent border-warning my-2">
+        <div class="card-header text-secondary">
+          <%= fa_icon('comments', text: '撩妹金句') %>
+        </div>
+        <div class="list-group list-group-flush">
+          <%= sidebar_card_link (fa_icon 'list-alt', text: '查看'), backstage_dialogues_path, klass: 'btn btn-outline-warning', id: 'dialogues-show' %>
+          <%= sidebar_card_link (fa_icon 'plus', text: '新增'), new_backstage_dialogue_path, klass: 'btn btn-outline-warning', id: 'dialogues-new' %>
+        </div>
+      </div>
+    </ul>
+  </div>
+</nav>

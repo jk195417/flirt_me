@@ -10,10 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171124052625) do
+ActiveRecord::Schema.define(version: 20171209064547) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "dialogues", force: :cascade do |t|
+    t.string "title"
+    t.string "source"
+    t.integer "likes", default: 0
+    t.integer "dislikes", default: 0
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["dislikes"], name: "index_dialogues_on_dislikes"
+    t.index ["likes"], name: "index_dialogues_on_likes"
+    t.index ["user_id"], name: "index_dialogues_on_user_id"
+  end
 
   create_table "roles", force: :cascade do |t|
     t.string "name"
@@ -24,6 +37,16 @@ ActiveRecord::Schema.define(version: 20171124052625) do
     t.index ["name", "resource_type", "resource_id"], name: "index_roles_on_name_and_resource_type_and_resource_id"
     t.index ["name"], name: "index_roles_on_name"
     t.index ["resource_type", "resource_id"], name: "index_roles_on_resource_type_and_resource_id"
+  end
+
+  create_table "sentences", force: :cascade do |t|
+    t.string "content"
+    t.string "type"
+    t.integer "sequence"
+    t.bigint "dialogue_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["dialogue_id"], name: "index_sentences_on_dialogue_id"
   end
 
   create_table "users", force: :cascade do |t|

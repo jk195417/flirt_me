@@ -1,0 +1,9 @@
+<h1 class="text-center">編輯撩妹金句 <span class="small text-muted"><%= "##{@dialogue.id} #{@dialogue.title}" %></span></h1>
+<%= link_to :back, class: 'btn btn-outline-dark' do %>
+  <%= fa_icon 'undo', text: '返回' %>
+<% end %>
+<%= render 'form' %>
+<script type="text/javascript">
+  // sidebar link active
+  $('#dialogues-show').addClass('active');
+</script>
