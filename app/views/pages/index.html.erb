@@ -13,7 +13,7 @@
         <% @top_dialogues[:likes].each do |d| %>
           <%= link_to dialogue_path(d), class: 'btn btn-outline-success list-group-item d-flex justify-content-between' do %>
             <span>#<%= d.id %></span>
-            <span style="overflow: hidden" class="mx-2"><%= d.title %></span>
+            <span class="mx-2 text-truncate"><%= d.title %></span>
             <span><%= fa_icon 'thumbs-o-up', text: d.likes %></span>
           <% end%>
         <% end %>
@@ -25,7 +25,7 @@
         <% @top_dialogues[:dislikes].each do |d| %>
           <%= link_to dialogue_path(d), class: 'btn btn-outline-danger list-group-item d-flex justify-content-between' do %>
             <span>#<%= d.id %></span>
-            <span style="overflow: hidden" class="mx-2"><%= d.title %></span>
+            <span class="mx-2 text-truncate"><%= d.title %></span>
             <span><%= fa_icon 'thumbs-o-down', text: d.dislikes %></span>
           <% end%>
         <% end %>
