@@ -4,7 +4,8 @@ git_source(:github) do |repo_name|
   repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?('/')
   "https://github.com/#{repo_name}.git"
 end
-
+# icons
+gem "font-awesome-rails"
 # 常用翻譯
 gem 'rails-i18n', '~> 5.0.0'
 # 權限控制
