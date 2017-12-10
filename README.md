@@ -37,6 +37,51 @@ config.time_zone = 'Taipei'
 config.i18n.default_locale = 'zh-TW'
 ```
 
+### yarn
+
+確定 `config/initializers/assets.rb` 有這行設定，引入 node_modules 當作 assets
+
+```ruby
+# config/initializers/assets.rb
+Rails.application.config.assets.paths << Rails.root.join('node_modules')
+```
+
+確認 `bin/setup` 中要有這行設定
+
+```ruby
+system('bin/yarn')
+```
+
+把 `yarn.lock` 和 `package.json` git commit 進去
+
+再把 `/node_modules` 和 `/yarn-error.log` 加入 .gitignore 內
+
+```
+/node_modules
+/yarn-error.log
+```
+
+我們不想把繁重的 `node_modules` 也一併上傳到雲端去，未來只需要連進雲端主機下指令
+
+```bash
+$ yarn
+# or
+$ yarn install
+```
+
+就能把 `node_modules` 裝起來了
+
+`yarn` 常用的幾個指令如下
+
+```bash
+# 新增函式庫
+$ yarn add some_package
+# 移除函式庫
+$ yarn remove some_package
+# 安裝函式庫
+$ yarn
+```
+
 ### 套件
 
 #### figaro
@@ -303,7 +348,7 @@ $ bundle exec rspec
 
 <https://github.com/plataformatec/devise/wiki/How-To:-Test-controllers-with-Rails-3-and-4-%28and-RSpec%29>
 
- <https://github.com/DatabaseCleaner/database_cleaner#rspec-example>
+<https://github.com/DatabaseCleaner/database_cleaner#rspec-example>
 
 <https://github.com/thoughtbot/factory_bot/blob/master/GETTING_STARTED.md>
 
@@ -381,3 +426,40 @@ $ bundle exec rspec/controllers/some_controller_spec.rb:8
 ## rake 任務
 
 待補充
+
+## 部署
+
+確認要上傳的程式碼都已經 push 到本地 git 的 master 分支後，執行
+
+```bash
+$ git push heroku master
+# config/application.yml 有新的環境變數要設定時執行
+$ figaro heroku:set -e production
+# 資料庫有新的 migration 時執行
+$ heroku run rails db:migrate
+```
+
+### 第一次部署要做的設定
+
+由於我們要部署的專案是 `Rails 5.1` 版，有使用到 `yarn`，所以 Buildpacks 除了 `heroku/ruby` 之外 還需要 `heroku/nodejs`，且要放在 `heroku/ruby`之前，可以透過下面指令來做設定
+
+```bash
+# 注意順序
+$ heroku buildpacks:add heroku/nodejs
+$ heroku buildpacks:add heroku/ruby
+```
+
+Heroku 會偵測到 Rails 框架，自動幫我們把 Heroku Postgres 架起來，並且跟 Rails app 連結
+
+> 參考 <https://devcenter.heroku.com/articles/ruby-support#installed-binaries>
+
+### 常用指令
+
+```bash
+# 追蹤 log
+$ heroku logs --tail
+# heroku config
+$ heroku config
+# 備份 db 到本地的 local_db_name
+$ heroku pg:pull DATABASE_URL local_db_name --app flirt-me
+```
