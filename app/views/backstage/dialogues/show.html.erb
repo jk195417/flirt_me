@@ -1,0 +1,15 @@
+<h1 class="text-center">
+  撩妹金句<span class="small text-muted">#<%= @dialogue.id %></span>
+</h1>
+<div class="d-flex">
+  <%= link_to backstage_dialogues_path, class: 'btn btn-outline-dark mr-auto' do %>
+    <%= fa_icon 'undo', text: '返回' %>
+  <% end %>
+  <%= link_to edit_backstage_dialogue_path(@dialogue), class: 'btn mr-1 btn-secondary' do %>
+    <%= fa_icon 'pencil', text: '編輯' %>
+  <% end %>
+  <%= link_to backstage_dialogue_path(@dialogue), class: 'btn btn-danger', method: :delete, data: { confirm: "確定刪除 #{@dialogue.title} 嗎?" } do %>
+    <%= fa_icon 'trash', text: '刪除' %>
+  <% end %>
+</div>
+<%= render 'dialogues/dialogue', dialogue: @dialogue %>

@@ -1,0 +1,44 @@
+<h1 class="text-center"><%= fa_icon 'comments', text: '撩妹金句' %><span class="ml-2">(<%= @dialogues.size %> 組)</span></h1>
+<%= link_to new_backstage_dialogue_path, class: 'btn btn-primary' do %>
+  <%= fa_icon 'plus', text: '新增' %>
+<% end %>
+<table class="table mt-2">
+  <thead class="thead-light">
+    <tr>
+      <th>編號</th>
+      <th>標題</th>
+      <th>來源</th>
+      <th><%= fa_icon 'thumbs-o-up', text: '可以' %></th>
+      <th><%= fa_icon 'thumbs-o-down', text: '不行' %></th>
+      <th><%= fa_icon 'clock-o', text: '建立時間' %></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @dialogues.each do |d| %>
+      <tr>
+        <td><%= d.id %></td>
+        <td><%= d.title %></td>
+        <td><%= d.source %></td>
+        <td><%= d.likes %></td>
+        <td><%= d.dislikes %></td>
+        <td><%= l d.created_at, format: :short %></td>
+        <td>
+          <%= link_to backstage_dialogue_path(d), class: 'btn btn-sm btn-primary' do %>
+            <%= fa_icon 'info-circle', text: '查看' %>
+          <% end %>
+          <%= link_to edit_backstage_dialogue_path(d), class: 'btn btn-sm btn-secondary' do %>
+            <%= fa_icon 'pencil', text: '編輯' %>
+          <% end %>
+          <%= link_to backstage_dialogue_path(d), class: 'btn btn-sm btn-danger', method: :delete, data: { confirm: "確定刪除 #{d.title} 嗎?" } do %>
+            <%= fa_icon 'trash', text: '刪除' %>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<script type="text/javascript">
+  // sidebar link active
+  $('#dialogues-show').addClass('active');
+</script>

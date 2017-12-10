@@ -8,18 +8,22 @@
   </button>
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
-      <%= nav_li '撩妹金句', dialogues_path %>
-      <%= nav_li '後台', backstage_root_path if can?(:manage, :backstage) %>
+      <%= nav_li fa_icon('comments', text: '撩妹金句'), dialogues_path %>
+      <%= nav_li fa_icon('wrench', text: '後台'), backstage_root_path if can?(:manage, :backstage) %>
     </ul>
     <ul class="navbar-nav ml-auto">
       <% if user_signed_in? %>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <%= current_user.email %>
+            <%= fa_icon 'user', text: current_user.email %>
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-            <%= link_to "帳號設定", edit_user_registration_path, class: 'dropdown-item' %>
-            <%= link_to "登出", destroy_user_session_path, method: :delete, class: 'dropdown-item' %>
+            <%= link_to edit_user_registration_path, class: 'dropdown-item' do %>
+              <%= fa_icon 'cog', text: '帳號設定' %>
+            <% end %>
+            <%= link_to destroy_user_session_path, method: :delete, class: 'dropdown-item' do %>
+              <%= fa_icon 'sign-out', text: '登出' %>
+            <% end %>
           </div>
         </li>
       <% else %>
