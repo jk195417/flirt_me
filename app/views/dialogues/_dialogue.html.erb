@@ -1,0 +1,33 @@
+<div class="card mt-2">
+  <div class="card-body">
+    <h2 class="text-center"><%= "#{dialogue.title}" %></h2>
+    <table class="table table-bordered">
+      <tbody>
+        <tr>
+          <th>編號</th>
+          <td colspan="3"><%= dialogue.id %></td>
+        </tr>
+        <tr>
+          <th>標題</th>
+          <td colspan="3"><%= dialogue.title %></td>
+        </tr>
+        <tr>
+          <th>來源</th>
+          <td colspan="3"><%= dialogue.source %></td>
+        </tr>
+        <tr>
+          <th><%= fa_icon 'thumbs-o-up', text: '可以' %></th>
+          <td><%= dialogue.likes %></td>
+          <th><%= fa_icon 'thumbs-o-down', text: '不行' %></th>
+          <td><%= dialogue.dislikes %></td>
+        </tr>
+        <tr>
+          <th><%= fa_icon 'clock-o', text: '建立時間' %></th>
+          <td><%= l dialogue.created_at, format: :long %></td>
+          <th><%= fa_icon 'clock-o', text: '更新時間' %></th>
+          <td><%= l dialogue.updated_at, format: :long %></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

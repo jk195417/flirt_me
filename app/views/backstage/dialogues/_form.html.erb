@@ -1,0 +1,11 @@
+<div class="container mt-2">
+  <%= simple_form_for [:backstage, @dialogue] do |f| %>
+    <%= f.input :title, label: '標題' %>
+    <%= f.input :source, label: '來源' %>
+    <div class="form-row">
+      <%= f.input :likes, label: '喜歡人數', wrapper_html: { class: 'col' } %>
+      <%= f.input :dislikes, label: '不喜歡人數', wrapper_html: { class: 'col' } %>
+    </div>
+    <%= f.button :submit, '送出', class: 'btn-outline-primary' %>
+  <% end %>
+</div>

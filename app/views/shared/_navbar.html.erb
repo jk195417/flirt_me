@@ -1,0 +1,35 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <%= link_to root_path, class: 'navbar-brand' do %>
+    <%= image_tag('lips.png') %>
+    撩我
+  <% end %>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <%= nav_li fa_icon('comments', text: '撩妹金句'), dialogues_path %>
+      <%= nav_li fa_icon('wrench', text: '後台'), backstage_root_path if can?(:manage, :backstage) %>
+    </ul>
+    <ul class="navbar-nav ml-auto">
+      <% if user_signed_in? %>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <%= fa_icon 'user', text: current_user.email %>
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <%= link_to edit_user_registration_path, class: 'dropdown-item' do %>
+              <%= fa_icon 'cog', text: '帳號設定' %>
+            <% end %>
+            <%= link_to destroy_user_session_path, method: :delete, class: 'dropdown-item' do %>
+              <%= fa_icon 'sign-out', text: '登出' %>
+            <% end %>
+          </div>
+        </li>
+      <% else %>
+        <%= nav_li '註冊', new_user_registration_path %>
+        <%= nav_li '登入', new_user_session_path %>
+      <% end %>
+    </ul>
+  </div>
+</nav>

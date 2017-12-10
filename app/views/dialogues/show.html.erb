@@ -1,0 +1,9 @@
+<div class="container">
+  <h1 class="text-center">
+    撩妹金句 <span class="small text-muted">#<%= @dialogue.id %></span>
+  </h1>
+  <%= link_to :back, class: 'btn btn-outline-dark' do %>
+    <%= fa_icon 'undo', text: '返回' %>
+  <% end %>
+  <%= render 'dialogue', dialogue: @dialogue %>
+</div>
