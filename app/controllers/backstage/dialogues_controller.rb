@@ -8,6 +8,7 @@ class Backstage::DialoguesController < Backstage::BaseController
 
   def new
     @dialogue = Dialogue.new
+    @dialogue.sentences.build
   end
 
   def create
@@ -21,7 +22,9 @@ class Backstage::DialoguesController < Backstage::BaseController
     end
   end
 
-  def edit; end
+  def edit
+    @dialogue.sentences.build
+  end
 
   def update
     if @dialogue.update(dialogue_params)
@@ -47,6 +50,9 @@ class Backstage::DialoguesController < Backstage::BaseController
   end
 
   def dialogue_params
-    params.require(:dialogue).permit(:title, :source, :likes, :dislikes, :user_id)
+    params.require(:dialogue).permit(
+      :title, :source, :likes, :dislikes, :user_id,
+      sentences_attributes: %i[id type sequence content _destroy]
+    )
   end
 end
