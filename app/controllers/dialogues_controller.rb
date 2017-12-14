@@ -5,7 +5,9 @@ class DialoguesController < ApplicationController
     @dialogues = Dialogue.all
   end
 
-  def show; end
+  def show
+    @sentences = @dialogue.sentences.to_flirt_me_struct
+  end
 
   private
 
