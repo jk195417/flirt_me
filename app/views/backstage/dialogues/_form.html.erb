@@ -3,9 +3,93 @@
     <%= f.input :title, label: '標題' %>
     <%= f.input :source, label: '來源' %>
     <div class="form-row">
-      <%= f.input :likes, label: '喜歡人數', wrapper_html: { class: 'col' } %>
-      <%= f.input :dislikes, label: '不喜歡人數', wrapper_html: { class: 'col' } %>
+      <%= f.input :likes, label: '喜歡', wrapper_html: { class: 'col' } %>
+      <%= f.input :dislikes, label: '不喜歡', wrapper_html: { class: 'col' } %>
+    </div>
+    <div id="sentences">
+      <h3>句組</h3>
+      <div class="row">
+      </div>
+      <%= f.simple_fields_for :sentences do |ff| %>
+        <div id="sentence-<%= ff.index %>" class="form-row align-items-center sentence">
+          <%= ff.input :type, collection: [['問', 'Question'],['答', 'Answer']], wrapper_html: { class: 'col-auto' }, label: '類型' %>
+          <%= ff.input :sequence, collection: 1..5, wrapper_html: { class: 'col-auto' }, label: '順序' %>
+          <%= ff.input :content, wrapper_html: { class: 'col' }, label: '內容' %>
+          <%= ff.input :_destroy, wrapper_html: { class: 'd-none' } %>
+          <%= link_to fa_icon('trash', text: '刪除句子'), 'javascript: void(0)', id: "delete-sentence-#{ ff.index }-btn", class: 'btn btn-sm btn-outline-danger', onclick: "deleteSentence(#{ ff.index })" %>
+        </div>
+      <% end %>
+      <%= link_to(
+        fa_icon('plus', text: '新句子'),
+        'javascript: void(0)',
+        id: 'add-sentence-btn',
+        class: 'form-group btn btn-sm btn-outline-primary mt-2',
+        onclick: 'addSentence(this)'
+      ) %>
     </div>
     <%= f.button :submit, '送出', class: 'btn-outline-primary' %>
   <% end %>
 </div>
+<script type="text/javascript">
+  var sentenceCount = <%= @dialogue.sentences.size %>;
+
+  function addSentence() {
+    if (sentenceCount == 0) { sentenceCount++; }
+
+    var lastSentence = $(`#sentence-${sentenceCount-1}`);
+    var newSentence = lastSentence.clone();
+    newSentence.attr('id', `sentence-${sentenceCount}`);
+
+    var type = newSentence.find('select[id$=type]');
+    var sequence = newSentence.find('select[id$=sequence]');
+    var content = newSentence.find('input[id$=content]');
+    var destroy = newSentence.find('input[id$=destroy]');
+    var deleteBtn = newSentence.find('a[id$=btn]');
+
+    type.val(null);
+    sequence.val(null);
+    content.val(null);
+    destroy.val(null);
+
+    type.attr('id', `dialogue_sentences_attributes_${sentenceCount}_type`);
+    sequence.attr('id', `dialogue_sentences_attributes_${sentenceCount}_sequence`);
+    content.attr('id', `dialogue_sentences_attributes_${sentenceCount}_content`);
+    destroy.attr('id', `dialogue_sentences_attributes_${sentenceCount}__distroy`);
+
+    type.attr('name', `dialogue[sentences_attributes][${sentenceCount}][type]`);
+    sequence.attr('name', `dialogue[sentences_attributes][${sentenceCount}][sequence]`);
+    content.attr('name', `dialogue[sentences_attributes][${sentenceCount}][content]`);
+    destroy.attr('name', `dialogue[sentences_attributes][${sentenceCount}][_distroy]`);
+
+
+    deleteBtn.attr('onclick', `deleteSentence(${sentenceCount})`)
+
+    sentenceCount++;
+
+    newSentence.removeClass('d-none');
+    $('#add-sentence-btn').before(newSentence);
+  }
+
+  function deleteSentence(id) {
+    var sentence = $(`#sentence-${id}`);
+    sentence.addClass('d-none');
+    sentence.find('input[id$=_destroy]').val(true);
+
+    var redoHtml = `
+      <div id="redo-sentence-${id}" class="mt-2">
+        <a href="javascript: void(0)" onclick="redoSentence(${id})"  class="btn btn-sm btn-outline-success">
+        <%= fa_icon 'repeat', text: '復原' %>
+        </a>
+      <div>
+    `;
+
+    sentence.after(redoHtml);
+  }
+
+  function redoSentence(id) {
+    var sentence = $(`#sentence-${id}`);
+    sentence.removeClass('d-none');
+    sentence.find('input[id$=_destroy]').val(false);
+    $(`#redo-sentence-${id}`).remove();
+  }
+</script>

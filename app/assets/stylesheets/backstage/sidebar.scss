@@ -3,14 +3,10 @@ $sidebar-width: 200px;
 #sidebar {
   display: none;
   width: $sidebar-width;
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
+  min-height: 100vh;
   z-index: 1000;
   overflow-x: hidden;
   overflow-y: auto;
-  border-right: 3px solid $light;
 
   .nav-link{
     &.active{
@@ -18,9 +14,4 @@ $sidebar-width: 200px;
       border-radius: 3px;
     }
   }
-
-}
-
-.d-block + main {
-  margin-left: $sidebar-width;
 }
