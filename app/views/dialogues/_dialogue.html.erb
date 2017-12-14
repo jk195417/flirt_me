@@ -29,5 +29,19 @@
         </tr>
       </tbody>
     </table>
+    <h3 class="card-title text-center">內容</h3>
+    <div class="d-flex px-2 card-body">
+
+    </div>
+    <ul class="list-group">
+      <li class="list-group-item list-group-item-dark d-flex justify-content-between">
+        <span>問</span>
+        <span>答</span>
+      </li>
+      <% Sentence::Sequence::MAX.times.each do |i| %>
+        <%= question_list sentences[:q][i] %>
+        <%= answer_list sentences[:a][i] %>
+      <% end %>
+    </ul>
   </div>
 </div>
