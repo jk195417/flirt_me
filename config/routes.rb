@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   root to: 'pages#index'
   # 後台
   namespace :backstage do
-    root to: 'pages#index'
+    root to: 'dialogues#index'
     get 'pages/index'
     resources :dialogues
   end
