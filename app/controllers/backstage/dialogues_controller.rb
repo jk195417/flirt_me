@@ -4,7 +4,9 @@ class Backstage::DialoguesController < Backstage::BaseController
     @dialogues = Dialogue.order(:id).all
   end
 
-  def show; end
+  def show
+    @sentences = @dialogue.sentences.to_flirt_me_struct
+  end
 
   def new
     @dialogue = Dialogue.new
