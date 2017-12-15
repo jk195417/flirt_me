@@ -2,7 +2,7 @@ class DialoguesController < ApplicationController
   before_action :set_dialogue, only: %i[show]
 
   def index
-    @dialogues = Dialogue.all
+    @dialogues = Dialogue.order(:id).page(params[:page]).per(10)
   end
 
   def show
