@@ -219,6 +219,25 @@ $ rails g cancan:ability
 
 權限定義於 `app/models/ability.rb`
 
+#### kaminari
+
+分頁
+
+`Gemfile` 加入 `kaminari`
+
+```ruby
+# Gemfile
+gem 'kaminari'
+```
+
+使用 bootstrap4 theme
+
+```bash
+$ rails g kaminari:views bootstrap4
+```
+
+用法參考 <https://github.com/kaminari/kaminari>
+
 #### rails-erd
 
 電腦需要有安裝 GraphViz，Mac 上透過 brew 安裝
