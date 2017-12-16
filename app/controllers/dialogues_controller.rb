@@ -3,6 +3,7 @@ class DialoguesController < ApplicationController
 
   def index
     @dialogues = Dialogue.order(:id).page(params[:page]).per(10)
+    @dialogues_count = Dialogue.count
   end
 
   def show

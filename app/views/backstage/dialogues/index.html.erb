@@ -1,5 +1,5 @@
 <div class="container">
-  <h1 class="text-center"><%= fa_icon 'comments', text: '撩妹金句' %><span class="ml-2">(<%= @dialogues.size %> 組)</span></h1>
+  <h1 class="text-center"><%= fa_icon 'comments', text: '撩妹金句' %><span class="ml-2">(<%= @dialogues_count %> 組)</span></h1>
   <%= link_to new_backstage_dialogue_path, class: 'btn btn-primary' do %>
     <%= fa_icon 'plus', text: '新增' %>
   <% end %>
