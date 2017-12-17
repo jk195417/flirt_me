@@ -1,4 +1,4 @@
-class Backstage::DialoguesController < Backstage::BaseController
+class Backstage::DialoguesController < BackstageController
   before_action :find_dialogue, only: %w[show edit update destroy]
   def index
     @dialogues = Dialogue.order(:id).page(params[:page]).per(10)
