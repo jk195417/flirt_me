@@ -1,4 +1,4 @@
-class Backstage::PagesController < Backstage::BaseController
+class Backstage::PagesController < BackstageController
   def index
   end
 end
