@@ -33,15 +33,17 @@ class LineBotService
 
   def bulid_reply_message(chat)
     # write your reply logic here
-    if chat.is_a?(Line::Bot::Event::Postback)
-      data = ActionController::Parameters.new(Rack::Utils.parse_nested_query(chat.postback['data']))
+    case chat
+    when Line::Bot::Event::Message
+      text = chat.message.fetch('text') { '' }
+      text[0..1].casecmp('撩我').zero? ? Dialogue.line_msg.to_h : ''
+    when Line::Bot::Event::Postback
+      data = chat.postback.fetch('data') { '' }
+      data = ActionController::Parameters.new(Rack::Utils.parse_nested_query(data))
       if data[:action] == 'flirting'
         Dialogue.line_msg(data[:dialogue_id], data[:sequence]).to_h
       elsif data[:action] == 'voting'
-
       end
-    elsif chat.is_a?(Line::Bot::Event::Message) && chat.message['text'][0..1].casecmp('撩我').zero?
-      Dialogue.line_msg
     end
   end
 end
