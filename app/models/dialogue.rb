@@ -4,7 +4,9 @@ class Dialogue < ApplicationRecord
   has_many :questions
   has_many :answers
 
-  accepts_nested_attributes_for :sentences, allow_destroy: true, reject_if: :all_blank
+  accepts_nested_attributes_for :sentences,
+                                allow_destroy: true,
+                                reject_if: :all_blank
 
   validates_presence_of :title
 
