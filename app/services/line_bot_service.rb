@@ -41,7 +41,7 @@ class LineBotService
 
       end
     elsif chat.is_a?(Line::Bot::Event::Message) && chat.message['text'][0..1].casecmp('撩我').zero?
-      Dialogue.line_msg
+      Dialogue.line_msg.to_h
     end
   end
 end
