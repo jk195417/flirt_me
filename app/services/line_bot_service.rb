@@ -38,7 +38,7 @@ class LineBotService
       text = chat.message.fetch('text') { '' }
       text[0..1].casecmp('撩我').zero? ? Dialogue.line_msg.to_h : ''
     when Line::Bot::Event::Postback
-      data = chat.postback.fetch('data') { '' }
+      data = chat.as_json.dig('src', 'postback', 'data') || ''
       data = ActionController::Parameters.new(Rack::Utils.parse_nested_query(data))
       if data[:action] == 'flirting'
         Dialogue.line_msg(data[:dialogue_id], data[:sequence]).to_h
