@@ -5,6 +5,8 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
+# line bot
+gem 'line-bot-api'
 # 分頁
 gem 'kaminari'
 # icons
