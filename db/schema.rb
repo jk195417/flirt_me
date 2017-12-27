@@ -47,7 +47,8 @@ ActiveRecord::Schema.define(version: 20171214104356) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["dialogue_id"], name: "index_sentences_on_dialogue_id"
-    t.index ["sequence"], name: "index_sentences_on_sequence"
+    t.index ["type", "dialogue_id", "sequence"], name: "index_sentences_on_type_and_dialogue_id_and_sequence"
+    t.index ["type", "dialogue_id"], name: "index_sentences_on_type_and_dialogue_id"
   end
 
   create_table "users", force: :cascade do |t|
