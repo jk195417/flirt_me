@@ -41,7 +41,7 @@ class LineBotService
       data = chat.as_json.dig('src', 'postback', 'data') || ''
       data = ActionController::Parameters.new(Rack::Utils.parse_nested_query(data))
       if data[:action] == 'flirting'
-        Dialogue.line_msg(data[:dialogue_id], data[:sequence]).to_h
+        Dialogue.line_msg(data[:dialogue_id], sequence: data[:sequence]).to_h
       elsif data[:action] == 'voting'
       end
     end
