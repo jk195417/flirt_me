@@ -1,7 +1,6 @@
 LINE_CHANNEL_ID: ''
 LINE_CHANNEL_SECRET: ''
 LINE_CHANNEL_TOKEN: ''
+
 production:
-  # SECRET_KEY_BASE: ''
-  # db_url: ''
-  # db_password: ''
+  HOST: ''
