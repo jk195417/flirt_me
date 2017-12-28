@@ -381,7 +381,6 @@ $ bundle exec rspec
 
 ```bash
 $ rails secret
-`
 ```
 
 執行指令後的結果貼至
@@ -389,6 +388,15 @@ $ rails secret
 ```yml
 production:
   secret_key_base: 'here'
+```
+
+- host
+
+設定應用程式網域，例如 flirt-me.herokuapp.com'
+
+```yml
+production:
+  HOST: 'flirt-me.herokuapp.com'
 ```
 
 - Line

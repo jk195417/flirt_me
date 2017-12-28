@@ -1,6 +1,7 @@
-LINE_CHANNEL_ID: ''
+LINE_CHANNEL_ID: '1546989840'
 LINE_CHANNEL_SECRET: ''
 LINE_CHANNEL_TOKEN: ''
 
 production:
-  HOST: ''
+  secret_key_base: ''
+  HOST: 'flirt-me.herokuapp.com'
