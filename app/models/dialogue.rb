@@ -25,9 +25,15 @@ class Dialogue < ApplicationRecord
     text = (sequence == 1 ? "##{d_id}\n\n#{q.content}" : q.content)
     actions = if a.blank?
                 [
-                  LineBot::Formats::Actions::Postback.new('可以', { action: 'voting', dialogue_id: d_id, feel: 'like' }.to_query),
-                  LineBot::Formats::Actions::Postback.new('不行', { action: 'voting', dialogue_id: d_id, feel: 'dislike' }.to_query),
-                  LineBot::Formats::Actions::Uri.new('至網站查看這則撩妹金句的人氣', dialogue_url(d_id)),
+                  LineBot::Formats::Actions::Postback.new(
+                    '可以', { action: 'voting', dialogue_id: d_id, feel: 'like' }.to_query),
+                  LineBot::Formats::Actions::Postback.new(
+                    '不行', { action: 'voting', dialogue_id: d_id, feel: 'dislike' }.to_query),
+                  LineBot::Formats::Actions::Uri.new(
+                    '至網站查看這則撩妹金句的人氣',
+                    Rails.application.routes.url_helpers.dialogue_url(d_id),
+                    Rails.application.config.action_mailer.default_url_options
+                  ),
                   LineBot::Formats::Actions::Postback.new('繼續撩我', { action: 'flirting' }.to_query, text: '撩我')
                 ]
               else
