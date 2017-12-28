@@ -10,18 +10,31 @@ class Dialogue < ApplicationRecord
 
   validates_presence_of :title
 
-  scope :ramdom_id, -> { order('RANDOM()').pluck(:id).first }
+  scope :random, -> { order('RANDOM()').first }
+  scope :random_id, -> { order('RANDOM()').pluck(:id).first }
+  scope :find_or_random, ->(id) { find_by(id: id) || random }
 
   def self.line_msg(d_id = nil, sequence: 1)
-    d_id ||= ramdom_id
+    # If no d_id then random one
+    d_id ||= random_id
+    # Query
     q = Question.where(dialogue_id: d_id, sequence: sequence)
     a = Answer.where(dialogue_id: d_id, sequence: sequence)
+    # Set attributes
+    alt_text = "撩妹金句 ##{d_id}"
     text = (sequence == 1 ? "##{d_id}\n\n#{q.content}" : q.content)
-    if a.blank?
-      LineBot::Formats::Messages::Text.new(text)
-    else
-      template = LineBot::Formats::Templates::Buttons.new(text, a.to_line_actions)
-      LineBot::Formats::Messages::Template.new("撩妹金句##{d_id}", template)
-    end
+    actions = if a.blank?
+                [
+                  LineBot::Formats::Actions::Postback.new('可以', { action: 'voting', dialogue_id: d_id, feel: 'like' }.to_query),
+                  LineBot::Formats::Actions::Postback.new('不行', { action: 'voting', dialogue_id: d_id, feel: 'dislike' }.to_query),
+                  LineBot::Formats::Actions::Uri.new('至網站查看這則撩妹金句的人氣', dialogue_url(d_id)),
+                  LineBot::Formats::Actions::Postback.new('繼續撩我', { action: 'flirting' }.to_query, text: '撩我')
+                ]
+              else
+                a.to_line_actions
+              end
+    # Use attributes to build message
+    template = LineBot::Formats::Templates::Buttons.new(text, actions)
+    LineBot::Formats::Messages::Template.new(alt_text, template)
   end
 end
