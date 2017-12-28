@@ -18,7 +18,7 @@ class Dialogue < ApplicationRecord
     a = Answer.where(dialogue_id: d_id, sequence: sequence)
     text = (sequence == 1 ? "##{d_id}\n\n#{q.content}" : q.content)
     if a.blank?
-      LineBot::Formats::Messages::Text.new(q.content)
+      LineBot::Formats::Messages::Text.new(text)
     else
       template = LineBot::Formats::Templates::Buttons.new(text, a.to_line_actions)
       LineBot::Formats::Messages::Template.new("撩妹金句##{d_id}", template)
