@@ -1,4 +1,7 @@
 class Dialogue < ApplicationRecord
+  # Using rails url_helpers in #self.line_msg
+  include Rails.application.routes.url_helpers
+
   belongs_to :user, optional: true
   has_many :sentences, dependent: :destroy
   has_many :questions
