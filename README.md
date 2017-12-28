@@ -392,11 +392,11 @@ production:
 
 - host
 
-設定應用程式網域，例如 flirt-me.herokuapp.com'
+`config/environments/production.rb` 設定應用程式網域，例如 flirt-me.herokuapp.com
 
-```yml
-production:
-  HOST: 'flirt-me.herokuapp.com'
+```ruby
+# config/environments/production.rb
+config.action_mailer.default_url_options = { host: 'flirt-me.herokuapp.com' }
 ```
 
 - Line

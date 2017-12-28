@@ -4,4 +4,3 @@ LINE_CHANNEL_TOKEN: ''
 
 production:
   secret_key_base: ''
-  HOST: 'flirt-me.herokuapp.com'

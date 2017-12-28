@@ -91,5 +91,4 @@ Rails.application.configure do
 
   # set host
   config.action_mailer.default_url_options = { host: 'flirt-me.herokuapp.com' }
-  # config.action_mailer.default_url_options = { host: ENV['HOST'] }
 end
