@@ -19,7 +19,7 @@ class Dialogue < ApplicationRecord
     if a.blank?
       LineBot::Formats::Messages::Text.new(q.content)
     else
-      t = LineBot::Formats::Templates::Buttons.new(q.content, a.to_line_actions)
+      t = LineBot::Formats::Templates::Buttons.new("##{d_id}\n\n#{q.content}", a.to_line_actions)
       LineBot::Formats::Messages::Template.new("撩妹金句##{d_id}", t)
     end
   end
