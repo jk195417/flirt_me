@@ -51,7 +51,7 @@ class LineBotService
                     LineBot::Formats::Messages::Sticker.new(1, 9)
                   end
         d.save!
-        sticker
+        sticker.to_h
       end
     end
   end
