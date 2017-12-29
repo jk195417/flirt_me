@@ -30,13 +30,13 @@ class Dialogue < ApplicationRecord
                   LineBot::Formats::Actions::Postback.new(
                     '不行', { action: 'voting', dialogue_id: d_id, feel: 'dislike' }.to_query),
                   LineBot::Formats::Actions::Uri.new(
-                    '至網站查看這則撩妹金句的人氣',
+                    '去網站看這則撩妹金句',
                     Rails.application.routes.url_helpers.dialogue_url(
                       d_id,
                       Rails.application.config.action_mailer.default_url_options
                     )
                   ),
-                  LineBot::Formats::Actions::Postback.new('繼續撩我', { action: 'flirting' }.to_query, text: '撩我')
+                  LineBot::Formats::Actions::Message.new('再來一個', '撩我')
                 ]
               else
                 a.to_line_actions
