@@ -43,10 +43,10 @@ class LineBotService
         Dialogue.line_msg(data[:dialogue_id], sequence: data[:sequence]).to_h
       elsif data[:action] == 'voting'
         d = Dialogue.find(data[:dialogue_id])
-        sticker = if data[:feel].to_sym == :likes
+        sticker = if data[:feel].to_sym == :like
                     d.likes += 1
                     LineBot::Formats::Messages::Sticker.new(1, 5)
-                  elsif data[:feel].to_sym == :dislikes
+                  elsif data[:feel].to_sym == :dislike
                     d.dislikes += 1
                     LineBot::Formats::Messages::Sticker.new(1, 9)
                   end
