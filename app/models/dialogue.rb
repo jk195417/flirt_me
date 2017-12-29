@@ -26,9 +26,9 @@ class Dialogue < ApplicationRecord
     actions = if a.blank?
                 [
                   LineBot::Formats::Actions::Postback.new(
-                    '可以', { action: 'voting', dialogue_id: d_id, feel: 'like' }.to_query),
+                    '可以', { action: 'voting', dialogue_id: d_id, feel: 'like' }.to_query, text: '可以'),
                   LineBot::Formats::Actions::Postback.new(
-                    '不行', { action: 'voting', dialogue_id: d_id, feel: 'dislike' }.to_query),
+                    '不行', { action: 'voting', dialogue_id: d_id, feel: 'dislike' }.to_query, text: '不行'),
                   LineBot::Formats::Actions::Uri.new(
                     '去網站看這則撩妹金句',
                     Rails.application.routes.url_helpers.dialogue_url(
