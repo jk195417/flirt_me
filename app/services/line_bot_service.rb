@@ -30,7 +30,6 @@ class LineBotService
     raise 'signature invalid' unless @bot.validate_signature(@body, @signature)
   end
 
-
   def bulid_reply_message(chat)
     # write your reply logic here
     case chat
@@ -43,6 +42,16 @@ class LineBotService
       if data[:action] == 'flirting'
         Dialogue.line_msg(data[:dialogue_id], sequence: data[:sequence]).to_h
       elsif data[:action] == 'voting'
+        d = Dialogue.find(data[:dialogue_id])
+        sticker = if data[:feel].to_sym == :likes
+                    d.likes += 1
+                    LineBot::Formats::Messages::Sticker.new(1, 5)
+                  elsif data[:feel].to_sym == :dislikes
+                    d.dislikes += 1
+                    LineBot::Formats::Messages::Sticker.new(1, 9)
+                  end
+        d.save!
+        sticker
       end
     end
   end
